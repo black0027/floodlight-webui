@@ -204,6 +204,8 @@
 
 <script>
     var ipaddress = $.cookie('cip');
+    var port = $.cookie('cport')
+    
     if (ipaddress == null || ipaddress == "") window.location.href = "login.html";
 
     $("#btnAddRule").click(function () {
@@ -248,7 +250,7 @@
         $.ajax({
             type    : "POST",
             dataType: 'json',
-            url     : "http://" + ipaddress + ":8080/wm/acl/rules/json",
+            url     : "http://" + ipaddress + ":" + port + "/wm/acl/rules/json",
             data    : postData,
             success : function (data) {
 
@@ -284,7 +286,7 @@
 
     function GetRules() {
 
-        var url = "http://" + ipaddress + ":8080/wm/acl/rules/json";
+    	var url = "http://" + ipaddress + ":" + port + "/wm/acl/rules/json";
 
         $(document).ready(function () {
 
@@ -335,7 +337,7 @@
             $.ajax({
                 type    : "DELETE",
                 dataType: 'json',
-                url     : "http://" + ipaddress + ":8080/wm/acl/rules/json",
+                url     : "http://" + ipaddress + ":" + port + "/wm/acl/rules/json",
                 data    : '{ "ruleid":' + "\"" + ruleId + "\"" + '}',
                 success : function (data) {
 
@@ -370,7 +372,7 @@
             $.ajax({
                 type    : "GET",
                 dataType: "json",
-                url     : "http://" + ipaddress + ":8080/wm/acl/clear/json",
+                url     : "http://" + ipaddress + ":" + port + "/wm/acl/clear/json",
                 success : function (data) {
 
                     new PNotify({
